@@ -6,7 +6,7 @@ const EventosSchema = new mongoose.Schema({
     category: {type: String},
     description: {type: String},
     image: {type: String},
-    day: {type: Date}
+    day: {type: Date},
 }, {
     timestamps: true,
     versionKey: false

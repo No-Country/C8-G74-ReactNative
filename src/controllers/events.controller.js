@@ -64,7 +64,25 @@ const updateEvent = async(req, res) => {
 }
 
 const deleteEvent = async(req, res) => {
-
+    const user = req.user
+    const id = req.params.id
+    console.log(id)
+    try {
+        if(id.length !== 24){
+            return res.status(404).json({message: "Provide a valid id, id must be 24 characters long"})
+        }
+        const event = await Events.findOne({_id: id})
+        if (!event) {
+            return res.status(404).json({message: "Event not found"})
+        }
+        if (user._id.toString() === event.publisher_id.toString()) {
+            await Events.deleteOne({_id: id})
+            return res.status(204).json({message: "Event deleted successfully"})
+        }
+        res.status(404).json({message: "You are not authorized to delete this event"})
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 const addToFavorite = async(req, res) => {

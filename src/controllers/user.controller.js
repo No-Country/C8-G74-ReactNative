@@ -8,7 +8,7 @@ dotenv.config();
 
 const connectToDatabase = () => {
     try {
-        mongoose.connect(process.env.DB_URI)
+        mongoose.connect(process.env.MONGODB__URI)
         console.log(`Connected succesfully to MongoServer!!`)
     } catch (err) {
         throw err

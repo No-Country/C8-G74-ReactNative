@@ -5,7 +5,7 @@ const auth = require('../../middlewares/authJWT')
 
 const router = Router()
 
-router.get('/authme', auth.verifyToken, authMe)
+router.get('/auth-me', auth.verifyToken, authMe)
 router.post('/signup', validation.validateSignUp, registerUser)
 router.post('/signin', validation.validateSingIn, loginUser)
 
